@@ -7,7 +7,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 request_number = 0
-wordlist_path = "/home/p4cm4n/Pentest_Learning/PortSwigger/Authentication/passwords"
+wordlist_path = ""
 wordlist = list()
 
 error_data = list()
