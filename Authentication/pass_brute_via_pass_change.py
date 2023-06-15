@@ -4,8 +4,8 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 my_session = requests.Session()
 main_url = "0ab600f403848b44854c8213006400a8.web-security-academy.net"
-
-wordlist_path = "/home/p4cm4n/Pentest_Learning/PortSwigger/Authentication/passwords"
+#set up wordlist path
+wordlist_path = ""
 proxy = {"http": "http://127.0.0.1:8080", "https": "http://127.0.0.1:8080"}
 
 
