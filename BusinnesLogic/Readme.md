@@ -1,3 +1,3 @@
-Scripts for Business Login labs:
+Scripts for Business Logic labs:
 - Low-level logic flaw
 
